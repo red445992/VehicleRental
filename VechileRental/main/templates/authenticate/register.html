@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- bootstrap css link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- favicon -->
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+
+
+    <!-- fontawesome link css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <!-- alertify js link -->
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+
+
+    <!-- alertify css link -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css" />
+
+
+    <!-- custom css link -->
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+    <style>
+        .cross {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: white;
+        }
+
+        .cross:hover {
+            color: orangered;
+            transform: scale(1.3);
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Register Form starts -->
+    <div class="main">
+        <div class="form-container">
+            <a href="{% url 'home' %}">
+                <h2 class="cross">
+                    <i class="fa-solid fa-xmark"></i>
+                </h2>
+            </a>
+            <p class="title">Register</p>
+
+
+
+            <form method="POST" class="form" id="registerForm" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="d-flex gap-3">
+                    <div class="input-group">
+                        <label for="fname">First Name</label>
+                        <input type="text" name="fname" id="fname" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="lname">Last Name</label>
+                        <input type="text" name="lname" id="lname" placeholder="Enter your last name" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Choose a username" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" name="confirm-password" id="confirm-password"
+                        placeholder="Re-enter your password" required>
+                </div>
+                <button type="submit" class="sign">Register</button>
+            </form>
+
+            <div class="social-message">
+                <div class="line"></div>
+                <p class="message">Or register with social accounts</p>
+                <div class="line"></div>
+            </div>
+            <div class="social-icons">
+                <button aria-label="Log in with Google" class="icon google">
+                    <i class="fab fa-google"></i>
+                </button>
+                <button aria-label="Log in with Twitter" class="icon twitter">
+                    <i class="fab fa-twitter"></i>
+                </button>
+                <button aria-label="Log in with GitHub" class="icon github">
+                    <i class="fab fa-github"></i>
+                </button>
+            </div>
+            <p class="signup">Already have an account?
+                <a href="{% url 'log_in' %}" class="link">Log in</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Form ends -->
+    {% if messages %}
+    {% for msg in messages %}
+    <script>
+        alertify.set('notifier', 'position', 'top-right');
+        alertify.success('{{msg}}');
+    </script>
+    {% endfor %}
+    {% endif %}
+
+
+
+    <!-- bootstrap js link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

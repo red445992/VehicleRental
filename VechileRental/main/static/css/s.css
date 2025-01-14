@@ -1,0 +1,63 @@
+.new_navbar {
+    background: linear-gradient(to right, red, blue);
+}
+
+.navbar-logo {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.welcome-banner {
+    background: linear-gradient(90deg, #ff7e5f, #feb47b); 
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 8px;
+    margin: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+.welcome-text {
+    display: inline;  /* Makes the h3 element inline */
+    margin-left: 5px; /* Optional: Adds some spacing between the emoji and the text */
+}
+
+.welcome-banner h3 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.welcome-banner h3.text-decoration-underline {
+    text-decoration: underline;
+}
+
+.d-flex.gap-3 {
+    gap: 1rem;
+}
+
+.btn {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensures images don't stretch */
+}
+
+.vehicle-image {
+    width: 300px; /* Limit image width to a standard size */
+    height: 200px; /* Set a uniform height */
+    object-fit: cover; /* Maintain aspect ratio and crop as needed */
+    border-radius: 8px; /* Optional: Rounded corners for aesthetic */
+    margin: 10px auto; /* Center images */
+    display: block; /* Block display for centering */
+}

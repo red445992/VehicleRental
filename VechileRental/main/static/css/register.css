@@ -1,0 +1,142 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #6a11cb, #2575fc); /* Purple to blue */
+  color: #fff;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Main container */
+.main {
+  width: 100%;
+  max-width: 550px;
+  padding: 20px;
+  margin: auto;
+}
+
+/* Form Container */
+.form-container {
+  background: #000;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Title */
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form Styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Input group */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #ddd;
+}
+
+.input-group input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background: #222;
+  color: #fff;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #6a11cb;
+}
+
+/* Button */
+.sign {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sign:hover {
+  background: linear-gradient(to right, #2575fc, #6a11cb);
+}
+
+/* Social Message */
+.social-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.social-message .line {
+  flex: 1;
+  height: 1px;
+  background: #444;
+}
+
+.social-message .message {
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-icons .icon {
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s ease;
+}
+
+.social-icons .icon:hover {
+  background: #6a11cb;
+}
+
+/* Signup Link */
+.signup {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 15px;
+}
+
+.signup .link {
+  color: #2575fc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup .link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+form
+{% endblock title %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% block pagecontent %}
+<h1 class="text-center alert alert-info">Customer Information</h1>
+<p>You are renting the vehicle: <strong>{{ vehicle_name }}</strong></p>
+<!-- FORM starts here -->
+<div class="container">
+    <div class="row">
+        <div class="col-10 alert alert-primary mx-auto">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <strong>Message:</strong> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <div class="form-container">
+                <h2>Customer Order Form</h2>
+                <form method="POST" action="{% url 'order' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="fname" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="fname" name="fname" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lname" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lname" name="lname" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" name="address"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mail" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="mail">
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Date Of Birth</label>
+                        <input type="date" class="form-control" name="DOB" id="date">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mob" class="form-label">Mobile Number</label>
+                        <input type="number" class="form-control" name="mob" id="mob">
+                    </div>
+                    <div class="mb-3">
+                        <label for="license" class="form-label">Upload License Photo</label>
+                        <input type="file" class="form-control" name="license" id="license" accept="image/*">
+                        <small>Accepted formats: JPG, PNG (Max size: 2MB)</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="order_take_day" class="form-label">Order Take Day</label>
+                        <input type="date" class="form-control" name="order_take_day" id="order_take_day">
+                    </div>
+                    <div class="mb-3">
+                        <label for="order_return_day" class="form-label">Order Return Day</label>
+                        <input type="date" class="form-control" name="order_return_day" id="order_return_day">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to Auto-Dismiss Alerts -->
+<script>
+    // Select all alert boxes with the "message-box" class
+    const messages = document.querySelectorAll('.message-box');
+
+    // Set a timeout to remove each alert after 5 seconds
+    messages.forEach((message) => {
+        setTimeout(() => {
+            message.classList.add('fade');
+            message.addEventListener('transitionend', () => message.remove());
+        }, 5000); // 5000ms = 5 seconds
+    });
+</script>
+{% endblock pagecontent %}

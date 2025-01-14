@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rent vehicles easily with RentEE.">
+  <meta property="og:title" content="RentEE | Vehicle Rental">
+  <meta property="og:description" content="Rent vehicles easily with RentEE.">
+  <meta property="og:image" content="{% static 'images/favicon.png' %}">
+
+  <title>RentEE |-
+    {% block title %}
+
+    {% endblock title %}
+  </title>
+
+  <!-- favicon -->
+  <link rel="icon" href="{% static 'images/favicon.png' %}">
+
+  <!-- bootstrap css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- AOS CSS LINK -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+  <!-- fontaweosme -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <!-- custom css -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/s.css' %}">
+
+</head>
+
+<body>
+  <!-- navigation bar -->
+  <nav class="navbar navbar-expand-lg new_navbar bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center">
+        <a href=" {% url 'home' %}"><img src="{% static 'images/favicon.png' %}" alt="Logo" class="navbar-logo"></a>
+        <a class="navbar-brand" href="{% url 'home' %}" aria-label="Go to home page"><b>R</b>entEE</a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+        </ul>
+        <div class="d-flex gap-3">
+          {% if request.user.is_authenticated %}
+            <div class="welcome-banner">
+              <span>👋 </span> <h3 class="text-decoration-underline fs-6 welcome-text">Welcome, {{ request.user.username }}!</h3>
+            </div>
+            <a class="btn btn-info text-light" href="{% url 'current_orders'%}">Current orders</a>
+            <a class="btn btn-danger" href="{% url 'log_out' %}">logout</a>
+          {% else %}
+            <a class="btn btn-outline-light me-2" href="{% url 'log_in' %}">Login</a>
+            <a class="btn btn-success" href="{% url 'register' %}">Register</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <!-- side bar section -->
+  <div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar Section -->
+        <div class="col-sm-2" id="sidebar" style="height: auto; background-color: #f1f1f1;">
+            <div class="row">
+                <div class="col-sm mt-3">
+                    <!-- Search Bar -->
+                    <label class="sr-only" for="searchInput">Search</label>
+                    <div class="input-group mb-3 gap-2">
+                        <input type="search" class="form-control" id="searchInput" placeholder="Search...">
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="button">
+                              <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="row">
+                <div class="col-sm mt-2">
+                    <form>
+                        <!-- Vehicle Type -->
+                        <strong>Vehicles</strong>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="Car">
+                            <label class="form-check-label" for="Car">Car</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="Bike">
+                            <label class="form-check-label" for="Bike">Bike</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="Bus">
+                            <label class="form-check-label" for="Bus">Bus</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="Scooter">
+                            <label class="form-check-label" for="Scooter">Scooter</label>
+                        </div>
+
+                        <!-- Company -->
+                        <strong>Company</strong>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="Maruti">
+                            <label class="form-check-label" for="Maruti">Maruti</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="Audi">
+                            <label class="form-check-label" for="Audi">Audi</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="Tesla">
+                            <label class="form-check-label" for="Tesla">Tesla</label>
+                        </div>
+
+                        <!-- Fuel Type -->
+                        <strong>Fuel Type</strong>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="Petrol">
+                            <label class="form-check-label" for="Petrol">Petrol</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="Electric">
+                            <label class="form-check-label" for="Electric">Electric</label>
+                        </div>
+
+                        <!-- Price Range -->
+                        <strong>Price Range</strong>
+                        <div class="form-check">
+                            <label class="form-check-label" for="price1" style="cursor: pointer;"
+                                onmouseover="this.style.color='tomato'" 
+                                onmouseout="this.style.color='black'">
+                                Under ₹1000
+                            </label><br>
+                            <label class="form-check-label" for="price2" style="cursor: pointer;"
+                                onmouseover="this.style.color='tomato'" 
+                                onmouseout="this.style.color='black'">
+                                ₹1000 - ₹2000
+                            </label><br>
+                            <label class="form-check-label" for="price3" style="cursor: pointer;"
+                                onmouseover="this.style.color='tomato'" 
+                                onmouseout="this.style.color='black'">
+                                Above ₹2000
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Section -->
+        <div class="col-sm-10">
+            <div class="content-wrapper mt-3">
+                {% block pagecontent %}
+                <h1 class="text-center text-primary">Available Vehicles</h1>
+                <!-- Add content dynamically -->
+                {% endblock pagecontent %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Inline CSS -->
+<style>
+    #sidebar {
+        padding: 15px;
+        border-right: 1px solid #ddd;
+    }
+    .content-wrapper {
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .form-check-label:hover {
+        color: tomato;
+        transition: color 0.3s ease-in-out;
+    }
+</style>
+  {% block content %}
+  {% endblock content %}
+
+  <!-- bootstrap js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
